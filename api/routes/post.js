@@ -13,6 +13,28 @@ router.post('/post', async (req, res) => {
         console.log(err.message)
         res.json(err.message)
     }
-  })
+  });
+  // GET มาทั้งหมด
+    router.get("/data", (req, res) => {
+        Data.find().exec((err, data) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).send(data);
+        });
+    });
+
+    // PUT (update current data)
+    router.put("/update/:_id", (req, res) => {
+     Data.findByIdAndUpdate(req.params._id, req.body, (err, data) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).send("อัพเดทข้อมูลเรียบร้อย");
+    });
+  });
+  // DELETE (delete 1 data)
+    router.delete("/delete/:_id", (req, res) => {
+    Data.findByIdAndDelete(req.params._id, (err, data) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).send("ลบข้อมูลเรียบร้อย");
+    });
+  });
 
   module.exports = router;

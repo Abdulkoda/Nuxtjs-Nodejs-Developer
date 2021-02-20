@@ -40,6 +40,11 @@
       <pre class="m-0">{{ form }}</pre>
     </b-card>
   </div>
+   <div class="mt-5">
+       <b-table striped hover  :items="myProvider" >
+         
+    </b-table>
+  </div>
   </b-container>
 </template>
 
@@ -67,9 +72,21 @@ import {HTTP} from "@/axios.js";
            const result =  await HTTP.post(`/v1/api/post`,obj)
            console.log(result)
            this.$swal(result.request.response);
-          //  alert('status'+result.status+ result.data)
         },
-      onReset(event) {
+      
+         myProvider () {
+        let promise = HTTP.get('/v1/api/data')
+        console.log(promise);
+        return promise.then((data) => {
+          const items = data.data
+          console.log(items)
+          return(items)
+        }).catch(error => {
+          return []
+        })
+      },
+     
+     onReset(event) {
         event.preventDefault()
         // Reset our form values
         this.form.Title = ''
