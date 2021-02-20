@@ -19,5 +19,8 @@ $ npm run generate
 
 # run api 
  $ npm i
+ # serve with hot reload at localhost:9000
+ $ node serve.js
+ 
 ```
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
