@@ -18,6 +18,7 @@ $ npm run start
 $ npm run generate
 
 # run api 
+ cd /api
  $ npm i
  # serve with hot reload at localhost:9000
  $ node serve.js
