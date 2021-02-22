@@ -22,6 +22,14 @@ router.post('/post', async (req, res) => {
         });
     });
 
+    // GET 1
+    router.get("/get/:_id", (req, res) => {
+      Data.findById(req.params._id).exec((err, data) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).send(data);
+      });
+    });
+
     // PUT (update current data)
     router.put("/update/:_id", (req, res) => {
      Data.findByIdAndUpdate(req.params._id, req.body, (err, data) => {
